@@ -7,4 +7,3 @@
 - Update an item in the App
 - Delete an item in the App
 - Clear from localStorage
-# Vanilla-CMS-Menu-App
