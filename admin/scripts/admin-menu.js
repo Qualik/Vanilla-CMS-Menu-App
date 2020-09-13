@@ -1,5 +1,4 @@
 import { MenuItem } from "./../../scripts/menu.js";
-// import { GrowlNotification } from "./scripts/growl.js";
 
 const { log, clear, dir } = console;
 
@@ -28,13 +27,12 @@ export default class AdminMenu {
     this.#items.length = 0;
     this.save();
 
-    // GrowlNotification.notify({
-    //   title: 'Item removed',
-    //   description: 'You have successfully removed your item.',
-    //   type: 'success',
-    //   position: 'bottom-right',
-    //   closeTimeout: 0
-    // });
+    GrowlNotification.notify({
+      title: 'LocalStorage',
+      description: 'LocalStorage Cleared.',
+      position: 'bottom-right',
+      closeTimeout: 0
+    });
   
   }
 
@@ -84,8 +82,17 @@ export default class AdminMenu {
 
     this.save();
 
+    GrowlNotification.notify({
+      title: 'Item added!',
+      description: 'You have added a new item.',
+      position: 'bottom-right',
+      closeTimeout: 0
+    });
+
     // Return the finished product for reference
     return { ...newItem };
+
+    
   }
 
   updateItem(updates = {}) {
@@ -118,6 +125,14 @@ export default class AdminMenu {
     // Remove the old and insert the new
     this.#items.splice(targetItemIndex, 1, updatedItem);
     this.save();
+
+    GrowlNotification.notify({
+      title: 'Item updated!',
+      description: 'You have updated an item.',
+      position: 'bottom-right',
+      closeTimeout: 0
+    });
+
     return { ...updatedItem }; // before returning the new item
   }
 
@@ -132,6 +147,14 @@ export default class AdminMenu {
     }
     const deleted = this.#items.splice(index, 1);
     this.save();
+
+    GrowlNotification.notify({
+      title: 'Item deleted!',
+      description: 'You have deleted an item.',
+      position: 'bottom-right',
+      closeTimeout: 0
+    });
+
     return deleted;
   }
 
